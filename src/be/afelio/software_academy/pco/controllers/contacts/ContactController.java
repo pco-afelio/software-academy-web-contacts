@@ -1,12 +1,9 @@
 package be.afelio.software_academy.pco.controllers.contacts;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import be.afelio.software_academy.pco.beans.Contact;
 import be.afelio.software_academy.pco.beans.Country;
@@ -22,8 +19,7 @@ public class ContactController {
 		this.repository = repository;
 	}
 	
-	public void list(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	public void list(HttpServletRequest request) {
 			
 		List<Contact> contacts = repository.findAllContact();
 		List<Country> countries = repository.findAllCountries();
@@ -31,11 +27,9 @@ public class ContactController {
 		request.setAttribute("contacts", contacts);
 		request.setAttribute("countries", countries);
 		request.setAttribute("tags", tags);
-		request.getRequestDispatcher("/WEB-INF/jsp/contacts.jsp").forward(request, response);
 	}
 		
-	public void add(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	public void add(HttpServletRequest request) {
 		
 		String firstname = request.getParameter("firstname");
 		String name = request.getParameter("name");
@@ -66,11 +60,10 @@ public class ContactController {
 			repository.addContact(firstname, name, email, countryId, tagIds.toArray(new Integer[] {}));
 		}
 		
-		list(request, response);
+		list(request);
 	}
 	
-	public void delete(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	public void delete(HttpServletRequest request) {
 		
 		String parameter = request.getParameter("id");
 		if (parameter != null) {
@@ -79,6 +72,6 @@ public class ContactController {
 				repository.deleteContactById(id);
 			} catch(NumberFormatException e) {}
 		}
-		list(request, response);
+		list(request);
 	}
 }

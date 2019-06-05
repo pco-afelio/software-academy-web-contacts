@@ -44,19 +44,24 @@ public class FrontController extends HttpServlet {
 		
 		switch(action) {
 			case "tag_list":
-				tagController.list(request, response);;
+				tagController.list(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/tags.jsp").forward(request, response);
 				break;
 			case "country_list":
-				countryController.list(request, response);;
+				countryController.list(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/countries.jsp").forward(request, response);
 				break;
 			case "country_delete":
-				countryController.delete(request, response);
+				countryController.delete(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/countries.jsp").forward(request, response);
 				break;
 			case "contact_list":
-				contactController.list(request, response);;
+				contactController.list(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/contacts.jsp").forward(request, response);
 				break;
 			case "contact_delete":
-				contactController.delete(request, response);
+				contactController.delete(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/contacts.jsp").forward(request, response);
 				break;				
 			default:
 				response.setStatus(404);	
@@ -70,16 +75,20 @@ public class FrontController extends HttpServlet {
 		
 		switch(action) {
 			case "tag_add":
-				tagController.add(request, response);
+				tagController.add(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/tags.jsp").forward(request, response);
 				break;			
 			case "country_add":
-					countryController.add(request, response);
+					countryController.add(request);
+					request.getRequestDispatcher("/WEB-INF/jsp/countries.jsp").forward(request, response);
 					break;
 			case "contact_add":
-					contactController.add(request, response);
+					contactController.add(request);
+					request.getRequestDispatcher("/WEB-INF/jsp/contacts.jsp").forward(request, response);
 					break;					
 			case "tag_delete":
-				tagController.delete(request, response);
+				tagController.delete(request);
+				request.getRequestDispatcher("/WEB-INF/jsp/tags.jsp").forward(request, response);
 				break;
 			default:
 				response.setStatus(404);	
